@@ -1,13 +1,13 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.tsx'
-import { ModalProvider } from './modals/modalProvider.tsx'
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import './index.css';
+import App from './App.tsx';
+import { ModalProvider } from './modals/modalProvider.tsx';
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <ModalProvider>
-      <App />
-    </ModalProvider>
-  </StrictMode>,
-)
+    <StrictMode>
+        <ModalProvider>
+            <App />
+        </ModalProvider>
+    </StrictMode>,
+);

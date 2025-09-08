@@ -9,30 +9,30 @@ interface IProps extends BaseProps {
 
 const ConfirmFinish = (props: IProps) => {
     const { finishReview, close } = props;
-    const { showAnim, hideAnim } = useDialogShowAnim(ModalId.confirmFinish)
-    useEffectOnce(showAnim)
+    const { showAnim, hideAnim } = useDialogShowAnim(ModalId.confirmFinish);
+    useEffectOnce(showAnim);
 
     const onClose = () => {
         hideAnim(close);
-    }
+    };
 
     const onFinish = () => {
-        finishReview()
-        onClose()
-    }
+        finishReview();
+        onClose();
+    };
 
     return (
         <dialog id={ModalId.confirmFinish} className="modal">
-        <div className="modal-box">
-            <h3 className="font-bold text-lg">Confirm finish</h3>
-            <p className="py-4">Make sure you handle the knowledge</p>
-            <div className="modal-action">
-                <button className='btn btn-outline btn-success' onClick={onFinish}>Confirm</button>
-                <button className='btn btn-outline' onClick={onClose}>Cancel</button>
+            <div className="modal-box">
+                <h3 className="font-bold text-lg">Confirm finish</h3>
+                <p className="py-4">Make sure you handle the knowledge</p>
+                <div className="modal-action">
+                    <button className='btn btn-outline btn-success' onClick={onFinish}>Confirm</button>
+                    <button className='btn btn-outline' onClick={onClose}>Cancel</button>
+                </div>
             </div>
-        </div>
         </dialog>
-    )
-}
+    );
+};
 
 export default ConfirmFinish;

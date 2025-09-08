@@ -1,10 +1,10 @@
-import { useState, type FC } from "react"
+import { useState, type FC } from "react";
 import { ModalMap } from "./constant";
 import type { ModalItem } from "./types";
 import { ModalContext } from "./modalContext";
 
 export const ModalProvider: FC<any> = ({ children }) => {
-    const [modalList, setModalList] = useState<ModalItem[]>([])
+    const [modalList, setModalList] = useState<ModalItem[]>([]);
 
     const showModal = (modalId: string, props?: Record<string, any>) => {
         setModalList(list => {
@@ -22,14 +22,14 @@ export const ModalProvider: FC<any> = ({ children }) => {
     };
 
     const closeModal = (modalId: string) => {
-        setModalList(list => list.filter(item => item.modalId != modalId))
+        setModalList(list => list.filter(item => item.modalId != modalId));
     };
 
     const value = {
         modalList,
         showModal,
         closeModal
-    }
+    };
 
     return (
         <ModalContext.Provider value={value}>
@@ -39,5 +39,5 @@ export const ModalProvider: FC<any> = ({ children }) => {
             ))}
         </ModalContext.Provider>
     );
-}
+};
 

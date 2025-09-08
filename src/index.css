@@ -1,7 +1,5 @@
 @import "tailwindcss";
-@plugin "daisyui" {
-  exclude: rootscrollgutter;
-}
+@plugin "daisyui";
 
 html,body,#root {
   padding: 0;

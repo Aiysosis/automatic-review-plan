@@ -10,9 +10,9 @@ interface IProps extends BaseProps {
 
 const CreateReviewItem = (props: IProps) => {
     const { close, addItem } = props;
-    const { showAnim, hideAnim } = useDialogShowAnim(ModalId.createReview)
+    const { showAnim, hideAnim } = useDialogShowAnim(ModalId.createReview);
 
-    useEffectOnce(showAnim)
+    useEffectOnce(showAnim);
 
     const [inputTitle, setInputTitle] = useState('');
     const [inputContent, setInputContent] = useState('');
@@ -22,26 +22,26 @@ const CreateReviewItem = (props: IProps) => {
             return;
         }
         addItem(inputTitle, inputContent);
-        onClose()
-    }
+        onClose();
+    };
 
     const onClose = () => {
         hideAnim(close);
-    }
+    };
 
     return (
         <dialog id={ModalId.createReview} className="modal">
-        <div className="modal-box w-3/4 max-w-5xl">
-          <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onClick={onClose}>✕</button>
-          <h3 className="font-bold text-lg">New review plan</h3>
-          <input type="text" placeholder="Title" className="input mt-4 w-full" onChange={e => setInputTitle(e.target.value)} />
-          <textarea placeholder="Content" className="textarea block mt-4 w-full min-h-16 max-h-64" onChange={e => setInputContent(e.target.value)}></textarea>
-          <div className="modal-action">
-            <button className={`btn btn-outline btn-success ${(inputTitle && inputContent) ? '':'btn-disabled'}`} onClick={onConfirmCreate}>Confirm</button>
-          </div>
-        </div>
-      </dialog>
-    )
-}
+            <div className="modal-box w-3/4 max-w-5xl">
+                <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onClick={onClose}>✕</button>
+                <h3 className="font-bold text-lg">New review plan</h3>
+                <input type="text" placeholder="Title" className="input mt-4 w-full" onChange={e => setInputTitle(e.target.value)} />
+                <textarea placeholder="Content" className="textarea block mt-4 w-full min-h-16 max-h-64" onChange={e => setInputContent(e.target.value)}></textarea>
+                <div className="modal-action">
+                    <button className={`btn btn-outline btn-success ${(inputTitle && inputContent) ? '':'btn-disabled'}`} onClick={onConfirmCreate}>Confirm</button>
+                </div>
+            </div>
+        </dialog>
+    );
+};
 
-export default CreateReviewItem
+export default CreateReviewItem;

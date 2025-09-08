@@ -7,30 +7,30 @@ export const useDialogShowAnim = (modalId: string) => {
 
     useEffect(() => {
         if (show) {
-            (document.getElementById(modalId) as any).showModal()
+            (document.getElementById(modalId) as any).showModal();
         }
     }, [modalId, show]);
 
     useEffect(() => {
         if (close) {
-            (document.getElementById(modalId) as any).close()
+            (document.getElementById(modalId) as any).close();
         }
     }, [close, modalId]);
 
     const showAnim =  useCallback(async (cb?: VoidFunction) => {
-        setShow(true)
-        await waitSomeTime(300)
-        cb?.()
-    }, [])
+        setShow(true);
+        await waitSomeTime(300);
+        cb?.();
+    }, []);
 
     const hideAnim =  useCallback(async (cb?: VoidFunction) => {
-        setClose(true)
-        await waitSomeTime(300)
-        cb?.()
-    }, [])
+        setClose(true);
+        await waitSomeTime(300);
+        cb?.();
+    }, []);
 
     return {
         showAnim,
         hideAnim
-    }
-}
+    };
+};
