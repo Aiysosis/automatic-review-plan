@@ -71,7 +71,7 @@ export const useReviewPlanData = () => {
                 if (item.id !== id) {
                     return item;
                 }
-                if (item.planIdx === reviewPlan.length) {
+                if (item.planIdx >= reviewPlan.length) {
                     return {
                         ...item,
                         status: ReviewStatus.Finish,
@@ -98,7 +98,7 @@ export const useReviewPlanData = () => {
             content,
             fstLearn: fstLearnDay,
             nextReviewDay: fstLearnDay + reviewPlan[initPlanIdx],
-            planIdx: initPlanIdx,
+            planIdx: initPlanIdx + 1,
             status: ReviewStatus.Normal,
             reviewRecords: []
         };

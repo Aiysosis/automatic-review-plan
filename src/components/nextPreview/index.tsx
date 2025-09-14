@@ -17,7 +17,7 @@ const NextPreview = (props: IProps) => {
     const renderPlanItem = (item: PlanItem) => {
         const { id, nextReviewDay, planIdx } = item;
         const nextReviewDayCnt = nextReviewDay - getCurTimeStampInDay();
-        const finishPercent = (planIdx / reviewPlan.length) * 100;
+        const finishPercent = (planIdx - 1 / reviewPlan.length) * 100;
 
         return (
             <Fragment key={id}>
