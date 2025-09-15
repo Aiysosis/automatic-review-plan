@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages (pnpm)
+name: Deploy to GitHub Pages (Vite + pnpm)
 
 on:
   push:
@@ -11,36 +11,40 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: pages
   cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: 'pnpm'
+          cache: pnpm
           cache-dependency-path: pnpm-lock.yaml
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
-          run_install: false
+      - name: Install pnpm via Corepack
+        run: |
+          npm i -g corepack@latest
+          corepack enable
+          corepack prepare pnpm@10 --activate
+          pnpm -v
+          which pnpm
 
       - name: Install deps
         run: pnpm install --frozen-lockfile
 
-      - name: Build
+      - name: Build (Vite)
         env:
           CI: true
         run: pnpm build
+
+      - name: SPA fallback (optional)
+        run: if [ -f dist/index.html ]; then cp dist/index.html dist/404.html; fi
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -54,6 +58,5 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
+      - id: deployment
         uses: actions/deploy-pages@v4
